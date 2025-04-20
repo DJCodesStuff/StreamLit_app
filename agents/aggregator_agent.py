@@ -16,7 +16,6 @@ CLASSIFICATION_PROMPT = (
 AGGREGATOR_PROMPT = (
     "You are a women's health assistant combining insights from both mental and physical health experts. "
     "Summarize the input clearly and empathetically, avoid duplication, and focus on clarity."
-    "Do not prompt or advice unessecarily unless the user asks for it or puts in a chat which seems describing a problem. "
 )
 
 def classify_query(user_input: str) -> str:
@@ -47,6 +46,7 @@ def aggregate_health_response(user_input: str, history: list[str]) -> str:
         f"Mental:\n{mental_response}\n\n"
         f"Physical:\n{physical_response}"
     )
+    
 
     summary_prompt = f"{AGGREGATOR_PROMPT}\n\n{combined}"
     messages = [{"role": "user", "parts": summary_prompt}]
@@ -55,4 +55,9 @@ def aggregate_health_response(user_input: str, history: list[str]) -> str:
         response = model.generate_content(messages)
         return response.candidates[0].content.parts[0].text
     except Exception as e:
-        return f"⚠️ Aggregator error. Using raw responses.\n\nMental:\n{mental_response}\n\nPhysical:\n{physical_response}\n\nError: {e}"
+        return (
+            f"⚠️ Aggregator error. Using raw responses.\n\n"
+            f"Mental:\n{mental_response}\n\n"
+            f"Physical:\n{physical_response}\n\n"
+            f"Error: {e}"
+        )
