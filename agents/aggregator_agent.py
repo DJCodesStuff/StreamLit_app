@@ -46,7 +46,6 @@ def aggregate_health_response(user_input: str, history: list[str]) -> str:
         f"Mental:\n{mental_response}\n\n"
         f"Physical:\n{physical_response}"
     )
-    
 
     summary_prompt = f"{AGGREGATOR_PROMPT}\n\n{combined}"
     messages = [{"role": "user", "parts": summary_prompt}]

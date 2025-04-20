@@ -27,8 +27,6 @@ def query_physical_agent(user_input: str, history: list[str] = None) -> str:
         f"Context from Documents:\n{context}\n\n"
         f"Live Web Search Results:\n{web_context}"
     )
-    print("🔍 Web context used:\n", web_context)
-
 
     messages = [{"role": "user", "parts": prompt}]
     try:
