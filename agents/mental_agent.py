@@ -28,8 +28,6 @@ def query_mental_agent(user_input: str, history: list[str] = None) -> str:
         f"Context from Documents:\n{context}\n\n"
         f"Live Web Search Results:\n{web_context}"
     )
-    print("🔍 Web context used:\n", web_context)
-
 
     messages = [{"role": "user", "parts": prompt}]
     try:
@@ -37,4 +35,3 @@ def query_mental_agent(user_input: str, history: list[str] = None) -> str:
         return response.candidates[0].content.parts[0].text
     except Exception as e:
         return f"❌ Mental Agent Error: {e}"
-
