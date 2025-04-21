@@ -13,7 +13,15 @@ MENTAL_INDEX = "index_mental.faiss"
 PHYSICAL_INDEX = "index_physical.faiss"
 SUPPORTED_EXTENSIONS = [".txt"]
 
-embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+MODEL_PATH = "./models/all-MiniLM-L6-v2"
+if os.path.exists(MODEL_PATH):
+    print("Loading embedding model from local directory")
+    embedding_model = HuggingFaceEmbeddings(model_name="./models/all-MiniLM-L6-v2")
+
+else:
+    print("Falling back to online model (requires internet)")
+    embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
 
 def load_and_embed(file_path):
     loader = TextLoader(file_path)
@@ -111,7 +119,7 @@ def start_monitoring():
 
     try:
         while True:
-            time.sleep(1)
+            time.sleep(1000)
     except KeyboardInterrupt:
         print("Stopping monitoring...")
         mental_observer.stop()
