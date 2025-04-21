@@ -8,11 +8,11 @@ load_dotenv()
 genai.configure(api_key=os.getenv("API_KEY"))
 model = genai.GenerativeModel(os.getenv("MODEL_NAME"))
 
-CLASSIFICATION_PROMPT = """You are an intelligent AI assistant combining insights from mental and physical health domains.
+CLASSIFICATION_PROMPT = """You are an intelligent AI assistant combining insights from mental and physical health domains in under 100 words.
 
 You must summarize the key findings from each assistant’s response and, if needed, ask up to **three** follow-up questions to deepen understanding or refine the solution.
 
-Finish with a comprehensive, supportive conclusion that brings mental and physical aspects together into a holistic suggestion.
+Finish with a comprehensive, supportive conclusion that brings mental and physical aspects together into holistic suggestions if the user feels comfortable to receive them.
 
 ---
 
@@ -27,16 +27,39 @@ Physical Health Response:
 
 Instructions:
 1. Combine the mental and physical health insights into one cohesive summary.
-2. Ask **no more than three** follow-up questions to fill gaps in understanding.
+2. Ask **no more than one** follow-up questions to fill gaps in understanding.
 3. Provide a thoughtful, complete conclusion or recommendation to guide the user.
 4. Maintain a kind, respectful, and clear tone.
-
+6. Ensure all the content required is retained but your repsonse shouldnt exceed **100 words**.
 """
 
-AGGREGATOR_PROMPT = (
-    "You are a women's health assistant combining insights from both mental and physical health experts. "
-    "Summarize the input clearly and empathetically, avoid duplication, and focus on clarity."
-)
+AGGREGATOR_PROMPT = """You are an intelligent AI assistant combining insights from mental and physical health domains in under 100 words.
+
+You must summarize the key findings from each assistant’s response and, if needed, ask up to **three** follow-up questions to deepen understanding or refine the solution.
+
+Finish with a comprehensive, supportive conclusion that brings mental and physical aspects together into holistic suggestions if the user feels comfortable to receive them.
+
+---
+
+User's Question:
+{user_input}
+
+Mental Health Response:
+{mental_response}
+
+Physical Health Response:
+{physical_response}
+
+Instructions:
+1. Combine the mental and physical health insights into one cohesive summary.
+2. Ask **no more than one** follow-up questions to fill gaps in understanding.
+3. Provide a thoughtful, complete conclusion or recommendation to guide the user.
+4. Maintain a kind, respectful, and clear tone.
+6. Ensure all the content required is retained but your repsonse shouldnt exceed **100 words**.
+"""
+
+
+
 
 def classify_query(user_input: str) -> str:
     # messages = [
