@@ -9,3 +9,5 @@ transformers
 langchain-core
 faiss-cpu
 watchdog
+langchain_community
+sentence-transformers
