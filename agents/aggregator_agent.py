@@ -90,6 +90,7 @@ def aggregate_health_response(user_input: str, history: list[str]) -> str:
         physical_response = query_physical_agent(user_input, history)
 
     combined = (
+        f"Convertation History:\n{history}\n\n"
         f"User: {user_input}\n\n"
         f"Mental:\n{mental_response}\n\n"
         f"Physical:\n{physical_response}"
