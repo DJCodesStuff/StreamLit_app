@@ -19,16 +19,18 @@ AGGREGATOR_PROMPT = (
 )
 
 def classify_query(user_input: str) -> str:
-    messages = [
-        {"role": "user", "parts": CLASSIFICATION_PROMPT},
-        {"role": "user", "parts": f"User query: {user_input}"}
-    ]
-    try:
-        response = model.generate_content(messages)
-        label = response.candidates[0].content.parts[0].text.strip().lower()
-        return label if label in ["mental", "physical", "both"] else "both"
-    except:
-        return "both"
+    # messages = [
+    #     {"role": "user", "parts": CLASSIFICATION_PROMPT},
+    #     {"role": "user", "parts": f"User query: {user_input}"}
+    # ]
+    # try:
+    #     response = model.generate_content(messages)
+    #     # label = response.candidates[0].content.parts[0].text.strip().lower()
+    #     return "both"
+    #     # return label if label in ["mental", "physical", "both"] else "both"
+    # except:
+    #     return "both"
+    return "both"
 
 def aggregate_health_response(user_input: str, history: list[str]) -> str:
     classification = classify_query(user_input)
