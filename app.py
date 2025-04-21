@@ -1,5 +1,14 @@
 import streamlit as st
 from agents.aggregator_agent import aggregate_health_response
+import threading
+from utils.rag_session_context import start_monitoring
+
+# Start background monitoring for document changes
+threading.Thread(target=start_monitoring, daemon=True).start()
+
+
+
+
 
 st.set_page_config(page_title="Dual Health Assistant", page_icon="🧠💪")
 st.title("🧠💪 Unified Health Assistant with RAG")
@@ -28,3 +37,5 @@ for msg in st.session_state.history:
         st.chat_message("user").write(msg["message"])
     else:
         st.chat_message("assistant").write(msg["message"])
+
+st.sidebar.success("📡 Vector store monitoring active")

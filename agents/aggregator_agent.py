@@ -6,12 +6,32 @@ from agents.physical_agent import query_physical_agent
 
 load_dotenv()
 genai.configure(api_key=os.getenv("API_KEY"))
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel(os.getenv("MODEL_NAME"))
 
-CLASSIFICATION_PROMPT = (
-    "You are a classifier that decides whether a health-related query is about mental health, physical health, or both. "
-    "Only return one word: 'mental', 'physical', or 'both'."
-)
+CLASSIFICATION_PROMPT = """You are an intelligent AI assistant combining insights from mental and physical health domains.
+
+You must summarize the key findings from each assistant’s response and, if needed, ask up to **three** follow-up questions to deepen understanding or refine the solution.
+
+Finish with a comprehensive, supportive conclusion that brings mental and physical aspects together into a holistic suggestion.
+
+---
+
+User's Question:
+{user_input}
+
+Mental Health Response:
+{mental_response}
+
+Physical Health Response:
+{physical_response}
+
+Instructions:
+1. Combine the mental and physical health insights into one cohesive summary.
+2. Ask **no more than three** follow-up questions to fill gaps in understanding.
+3. Provide a thoughtful, complete conclusion or recommendation to guide the user.
+4. Maintain a kind, respectful, and clear tone.
+
+"""
 
 AGGREGATOR_PROMPT = (
     "You are a women's health assistant combining insights from both mental and physical health experts. "

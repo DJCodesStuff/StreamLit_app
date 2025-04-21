@@ -4,3 +4,8 @@ python-dotenv
 PyMuPDF
 requests
 duckduckgo-search
+huggingface
+transformers
+langchain-core
+faiss-cpu
+watchdog
