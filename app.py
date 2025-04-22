@@ -52,7 +52,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App title
-st.title("💖 Unified Health Assistant")
+st.title("💖 Rosa: Your Unified Health Assistant")
 st.caption("Feel free to ask anything about your body, mood, or mind — we're here for you 💬")
 
 # Initialize state
@@ -101,7 +101,6 @@ if st.session_state.chat_phase == "generate_response":
     st.rerun()
 
 # Sidebar
-st.sidebar.image("https://cdn-icons-png.flaticon.com/512/4305/4305560.png", width=100)
 st.sidebar.markdown("### 💬 About this app")
-st.sidebar.info("This assistant provides both medical and emotional health support using AI agents. All your conversations remain private.")
+st.sidebar.info("This assistant provides both medical and emotional health support using AI agents. \nAll your conversations remain private.")
 st.sidebar.success("📡 Vector store monitoring active")
