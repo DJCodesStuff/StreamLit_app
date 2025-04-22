@@ -87,7 +87,7 @@ if st.session_state.chat_phase == "show_animation":
         for i in range(6):
             dots = "." * ((i % 3) + 1)
             placeholder.markdown(f"💬 Typing{dots}")
-            time.sleep(1)
+            time.sleep(0.4)
     st.session_state.chat_phase = "generate_response"
     st.rerun()
 
