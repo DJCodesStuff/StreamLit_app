@@ -55,7 +55,7 @@ Instructions:
 1. Combine the mental and physical health insights into one cohesive summary while answering the users query and paying attention to what the user has said in the past.
 2. Ask **no more than one** follow-up questions to fill gaps in understanding.
 3. Provide a thoughtful, complete conclusion or recommendation to guide the user.
-4. Maintain a kind, respectful, and clear tone.
+4. Maintain a kind, respectful, and clear tone while maintaining conversation as if talking to friend.
 6. Ensure all the content required is retained but your repsonse shouldnt exceed **100 words**.
 7. Dont give recommendations in every response since the key is to make it feel like a conversation.
 """
