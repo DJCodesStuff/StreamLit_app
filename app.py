@@ -78,11 +78,11 @@ for i, msg in enumerate(st.session_state.history):
     if msg["role"] == "user":
         st.chat_message("user").write(msg["message"])
     else:
-        st.chat_message("assistant").write(msg["message"])
+        st.chat_message("👩").write(msg["message"])
 
 # Show animated typing dots
 if st.session_state.chat_phase == "show_animation":
-    with st.chat_message("assistant"):
+    with st.chat_message("👩"):
         placeholder = st.empty()
         for i in range(6):
             dots = "." * ((i % 3) + 1)
